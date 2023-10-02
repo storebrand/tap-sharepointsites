@@ -3,7 +3,8 @@
 import json
 from unittest import mock
 
-from tap_sharepointsites.streams import ListStream
+from tap_sharepointsites.file_stream import FilesStream
+from tap_sharepointsites.list_stream import ListStream
 from tap_sharepointsites.tap import Tapsharepointsites
 
 from .configuration.test_catalog import sample_catalog
