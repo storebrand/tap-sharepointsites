@@ -59,6 +59,8 @@ class ExcelHandler:
                 # replace whitespace with underscores
                 formatted_key = re.sub(r"\s+", "_", formatted_key)
 
-                to_return[formatted_key.lower()] = str(cell.value) if cell.value is not None else ''
+                to_return[formatted_key.lower()] = (
+                    str(cell.value) if cell.value is not None else ""
+                )
 
             yield to_return
