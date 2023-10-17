@@ -29,12 +29,6 @@ class sharepointsitesStream(RESTStream):
     """sharepointsites stream class."""
 
     # OR use a dynamic url_base:
-    @property
-    def url_base(self) -> str:
-        """Return the API URL root, configurable via tap settings."""
-        return self.config["api_url"]
-
-    records_jsonpath = "$.value[*]"  # Or override `parse_response`.
 
     @property
     def authenticator(self) -> BearerTokenAuthenticator:

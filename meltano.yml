@@ -30,6 +30,10 @@ plugins:
       label: Sharepoint Lists
       documentation: An array of lists to extract, each an object with `name` as a key.
       placeholder: '["my-list-1", "my-list-2"]'
+    - name: files
+      label: Sharepoint Lists
+      documentation: An array of files to extract.
+      placeholder: '[{"name": "my-file-1", "file_pattern": ".*\.csv", "file_type": "csv", "folder": "my-folder"}]'
     - name: client_id
       label: Managed Identity Client ID
       value: null
