@@ -117,7 +117,7 @@ class FilesStream(sharepointsitesStream):
 
                 if self.file_config["file_type"] == "csv":
                     file = self.get_file_for_row(record)
-                    dr = CSVHandler(file).get_dictreader()
+                    dr = CSVHandler(file, self.file_config.get('delimiter', ',')).get_dictreader()
 
                 elif self.file_config["file_type"] == "excel":
                     file = self.get_file_for_row(record, text=False)
@@ -148,7 +148,7 @@ class FilesStream(sharepointsitesStream):
 
                 if self.file_config["file_type"] == "csv":
                     file = self.get_file_for_row(file)
-                    dr = CSVHandler(file).get_dictreader()
+                    dr = CSVHandler(file, self.file_config.get('delimiter', ',')).get_dictreader()
 
                 elif self.file_config["file_type"] == "excel":
                     file = self.get_file_for_row(file, text=False)

@@ -12,9 +12,10 @@ LOGGER = logging.getLogger(__name__)
 class CSVHandler:
     """Handle CSV files."""
 
-    def __init__(self, textcontent):
+    def __init__(self, textcontent, delimiter=","):
         """Initialize ExcelHandler."""
         self.textcontent = textcontent
+        self.delimiter = delimiter
 
     @staticmethod
     def format_key(key):
@@ -29,7 +30,7 @@ class CSVHandler:
             self.textcontent,
             fieldnames=None,
             restkey="_sdc_extra",
-            delimiter=self.file_config.get('delimiter', ',')
+            delimiter=self.delimiter
         )
 
         dr.fieldnames = [self.format_key(key) for key in dr.fieldnames.copy()]
