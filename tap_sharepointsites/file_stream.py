@@ -115,7 +115,7 @@ class FilesStream(sharepointsitesStream):
                 if self.file_config["file_type"] == "csv":
                     file = self.get_file_for_row(record)
                     dr = csv.DictReader(
-                        io.TextIOWrapper(file, encoding=self.file_config.get('encoding', 'utf-8')) 
+                        io.TextIOWrapper(file, encoding=self.file_config.get('encoding', 'utf-8')),
                         fieldnames=None,
                         restkey="_sdc_extra",
                         delimiter=self.file_config.get('delimiter', ',')
