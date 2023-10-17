@@ -12,6 +12,7 @@ from singer_sdk import metrics
 
 from tap_sharepointsites.client import sharepointsitesStream
 from tap_sharepointsites.file_handlers.excel_handler import ExcelHandler
+from tap_sharepointsites.file_handlers.csv_handler import CSVHandler
 
 
 class FilesStream(sharepointsitesStream):
@@ -98,6 +99,8 @@ class FilesStream(sharepointsitesStream):
 
             base_url = data.get("@odata.nextLink")
 
+
+
     def parse_response(self, response: requests.Response, context) -> t.Iterable[dict]:
         """Parse the response and return an iterator of result records."""
         resp_values = response.json()["value"]
@@ -114,12 +117,7 @@ class FilesStream(sharepointsitesStream):
 
                 if self.file_config["file_type"] == "csv":
                     file = self.get_file_for_row(record)
-                    dr = csv.DictReader(
-                        file,
-                        fieldnames=None,
-                        restkey="_sdc_extra",
-                        delimiter=self.file_config.get('delimiter', ',')
-                    )
+                    dr = CSVHandler(file).get_dictreader()
 
                 elif self.file_config["file_type"] == "excel":
                     file = self.get_file_for_row(record, text=False)
@@ -150,7 +148,7 @@ class FilesStream(sharepointsitesStream):
 
                 if self.file_config["file_type"] == "csv":
                     file = self.get_file_for_row(file)
-                    dr = csv.DictReader(file.splitlines(), delimiter=",")
+                    dr = CSVHandler(file).get_dictreader()
 
                 elif self.file_config["file_type"] == "excel":
                     file = self.get_file_for_row(file, text=False)
