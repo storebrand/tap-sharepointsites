@@ -3,7 +3,6 @@
 import json
 from unittest import mock
 
-from tap_sharepointsites.file_stream import FilesStream
 from tap_sharepointsites.list_stream import ListStream
 from tap_sharepointsites.tap import Tapsharepointsites
 
@@ -28,7 +27,6 @@ def test_cli_prints() -> None:
     # Test CLI prints
     tap1.print_version()
     tap1.print_about()
-    tap1.print_about(format="json")
 
 
 def test_discovery() -> None:

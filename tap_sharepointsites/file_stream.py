@@ -1,18 +1,17 @@
 """Stream type classes for tap-sharepointsites."""
 
-import csv
 import datetime
 import re
 import typing as t
 from functools import cached_property
-import io
+
 import requests
 from azure.identity import DefaultAzureCredential, ManagedIdentityCredential
 from singer_sdk import metrics
 
 from tap_sharepointsites.client import sharepointsitesStream
-from tap_sharepointsites.file_handlers.excel_handler import ExcelHandler
 from tap_sharepointsites.file_handlers.csv_handler import CSVHandler
+from tap_sharepointsites.file_handlers.excel_handler import ExcelHandler
 
 
 class FilesStream(sharepointsitesStream):
@@ -99,8 +98,6 @@ class FilesStream(sharepointsitesStream):
 
             base_url = data.get("@odata.nextLink")
 
-
-
     def parse_response(self, response: requests.Response, context) -> t.Iterable[dict]:
         """Parse the response and return an iterator of result records."""
         resp_values = response.json()["value"]
@@ -117,15 +114,17 @@ class FilesStream(sharepointsitesStream):
 
                 if self.file_config["file_type"] == "csv":
                     file = self.get_file_for_row(record)
-                    dr = CSVHandler(file, self.file_config.get('delimiter', ',')).get_dictreader()
+                    dr = CSVHandler(
+                        file, self.file_config.get("delimiter", ",")
+                    ).get_dictreader()
 
                 elif self.file_config["file_type"] == "excel":
                     file = self.get_file_for_row(record, text=False)
                     dr = ExcelHandler(file).get_row_iterator()
                 else:
-                    filetype_name = self.file_config.get("file_type", 'unknown')
+                    filetype_name = self.file_config.get("file_type", "unknown")
                     raise Exception(f"File type { filetype_name } not supported (yet)")
-                
+
                 for i, row in enumerate(dr):
                     row.update(
                         {
@@ -148,7 +147,9 @@ class FilesStream(sharepointsitesStream):
 
                 if self.file_config["file_type"] == "csv":
                     file = self.get_file_for_row(file)
-                    dr = CSVHandler(file, self.file_config.get('delimiter', ',')).get_dictreader()
+                    dr = CSVHandler(
+                        file, self.file_config.get("delimiter", ",")
+                    ).get_dictreader()
 
                 elif self.file_config["file_type"] == "excel":
                     file = self.get_file_for_row(file, text=False)
@@ -179,7 +180,6 @@ class FilesStream(sharepointsitesStream):
 
         else:
             raise Exception("There is no spoon. Nor files, for that matter.")
-        
 
     def get_drive_id(self):
         """Get drives in the sharepoint site."""
@@ -188,7 +188,6 @@ class FilesStream(sharepointsitesStream):
         if not drive.ok:
             raise Exception(f"Error getting drive: {drive.status_code}: {drive.text}")
         return drive.json()["id"]
-
 
     def get_file_for_row(self, row_data, text=True):
         """Get the file for a row."""
@@ -201,7 +200,6 @@ class FilesStream(sharepointsitesStream):
             return file.text
         else:
             return file.content
-
 
     def get_properties(self, fieldnames) -> dict:
         """Get a list of properties for a *SV file, to be used in creating a schema."""
