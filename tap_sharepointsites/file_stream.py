@@ -125,7 +125,8 @@ class FilesStream(sharepointsitesStream):
                     file = self.get_file_for_row(record, text=False)
                     dr = ExcelHandler(file).get_row_iterator()
                 else:
-                    raise Exception(f"File type {self.file_config["file_type"]} not supported (yet)")
+                    filetype_name = self.file_config.get("file_type", 'unknown')
+                    raise Exception(f"File type { filetype_name } not supported (yet)")
                 
                 for i, row in enumerate(dr):
                     row.update(
