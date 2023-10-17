@@ -27,7 +27,7 @@ class Tapsharepointsites(Tap):
         th.Property(
             "lists",
             th.ArrayType(th.StringType),
-            required=True,
+            required=False,
             description="The name of the list to sync",
         ),
         th.Property(
