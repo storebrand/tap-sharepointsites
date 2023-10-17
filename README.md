@@ -6,6 +6,56 @@ Built with the [Meltano Tap SDK](https://sdk.meltano.com) for Singer Taps.
 
 [![Test tap-sharepointsites](https://github.com/radbrt/tap-sharepointsites/actions/workflows/ci_workflow.yml/badge.svg)](https://github.com/radbrt/tap-sharepointsites/actions/workflows/ci_workflow.yml)
 
+## Capabilities
+
+* `catalog`
+* `state`
+* `discover`
+* `about`
+* `stream-maps`
+* `schema-flattening`
+* `batch`
+
+## Settings
+
+| Setting             | Required | Default | Description |
+|:--------------------|:--------:|:-------:|:------------|
+| api_url             | True     | None    | The url for the API service |
+| lists               | True     | None    | The name of the list to sync |
+| files               | False    | None    | Files to sync |
+| client_id           | False    | None    | Managed Identity Client ID |
+| stream_maps         | False    | None    | Config object for stream maps capability. For more information check out [Stream Maps](https://sdk.meltano.com/en/latest/stream_maps.html). |
+| stream_map_config   | False    | None    | User-defined config values to be used within map expressions. |
+| flattening_enabled  | False    | None    | 'True' to enable schema flattening and automatically expand nested properties. |
+| flattening_max_depth| False    | None    | The max depth to flatten schemas. |
+| batch_config        | False    | None    |             |
+
+A full list of supported settings and capabilities is available by running: `tap-sharepointsites --about`
+
+
+## File config
+
+The file configuration accepts an array of objects, with keys: 
+- `name`: Name given to the stream/table 
+- `file_pattern`: regex-like pattern for filenames to load
+- `folder`: Subfolder where the files are located
+- `file_type`: Type (format) of file to load, either `csv` or `excel`.
+- `delimiter`: Field delimiter for CSV files. default `,`
+
+Example config:
+
+```
+...
+  config:
+    ...
+    files:
+    - name: employees
+      file_pattern: employees_.*\.csv
+      folder: hr_data/raw
+      file_type: csv
+  ...
+```
+
 <!--
 
 Developer TODO: Update the below as needed to correctly describe the install procedure. For instance, if you do not have a PyPi repo, or if you want users to directly install from your git repo, you can modify this step as appropriate.

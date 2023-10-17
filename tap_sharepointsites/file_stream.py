@@ -139,7 +139,7 @@ class FilesStream(sharepointsitesStream):
                     yield row
 
     @cached_property
-    def schema(self) -> dict[str, dict]:
+    def schema(self):
         """Create a schema for a *SV file."""
         all_files = self.list_all_files(headers=self.header)
 
@@ -179,6 +179,7 @@ class FilesStream(sharepointsitesStream):
 
         else:
             raise Exception("There is no spoon. Nor files, for that matter.")
+        
 
     def get_drive_id(self):
         """Get drives in the sharepoint site."""
@@ -250,7 +251,7 @@ class FilesStream(sharepointsitesStream):
 
                 paginator.advance(resp)
 
-    def get_records(self, context) -> t.Iterable[dict[str, t.Any]]:
+    def get_records(self, context):
         """Return a generator of record-type dictionary objects.
 
         Each record emitted should be a dictionary of property names to their values.
