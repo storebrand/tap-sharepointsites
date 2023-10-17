@@ -5,7 +5,7 @@ import datetime
 import re
 import typing as t
 from functools import cached_property
-
+import io
 import requests
 from azure.identity import DefaultAzureCredential, ManagedIdentityCredential
 from singer_sdk import metrics
@@ -114,12 +114,19 @@ class FilesStream(sharepointsitesStream):
 
                 if self.file_config["file_type"] == "csv":
                     file = self.get_file_for_row(record)
-                    dr = csv.DictReader(file.splitlines(), delimiter=",")
+                    dr = csv.DictReader(
+                        io.TextIOWrapper(file, encoding=self.file_config.get('encoding', 'utf-8')) 
+                        fieldnames=None,
+                        restkey="_sdc_extra",
+                        delimiter=self.file_config.get('delimiter', ',')
+                    )
 
                 elif self.file_config["file_type"] == "excel":
                     file = self.get_file_for_row(record, text=False)
                     dr = ExcelHandler(file).get_row_iterator()
-
+                else:
+                    raise Exception(f"File type {self.file_config["file_type"]} not supported (yet)")
+                
                 for i, row in enumerate(dr):
                     row.update(
                         {
@@ -182,6 +189,7 @@ class FilesStream(sharepointsitesStream):
             raise Exception(f"Error getting drive: {drive.status_code}: {drive.text}")
         return drive.json()["id"]
 
+
     def get_file_for_row(self, row_data, text=True):
         """Get the file for a row."""
         file = requests.get(
@@ -189,10 +197,12 @@ class FilesStream(sharepointsitesStream):
         )
         file.raise_for_status()
 
-        if text:
-            return file.text
-        else:
-            return file.content
+        return file.content
+        # if text:
+        #     return file.text
+        # else:
+        #     return file.content
+
 
     def get_properties(self, fieldnames) -> dict:
         """Get a list of properties for a *SV file, to be used in creating a schema."""
