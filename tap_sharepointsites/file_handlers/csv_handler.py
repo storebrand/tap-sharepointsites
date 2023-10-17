@@ -27,7 +27,7 @@ class CSVHandler:
 
     def get_dictreader(self):
         dr = csv.DictReader(
-            self.textcontent,
+            self.textcontent.splitlines(),
             fieldnames=None,
             restkey="_sdc_extra",
             delimiter=self.delimiter
