@@ -21,7 +21,7 @@ Built with the [Meltano Tap SDK](https://sdk.meltano.com) for Singer Taps.
 | Setting             | Required | Default | Description |
 |:--------------------|:--------:|:-------:|:------------|
 | api_url             | True     | None    | The url for the API service |
-| lists               | True     | None    | The name of the list to sync |
+| lists               | False    | None    | The name of the list to sync |
 | files               | False    | None    | Files to sync |
 | client_id           | False    | None    | Managed Identity Client ID |
 | stream_maps         | False    | None    | Config object for stream maps capability. For more information check out [Stream Maps](https://sdk.meltano.com/en/latest/stream_maps.html). |
