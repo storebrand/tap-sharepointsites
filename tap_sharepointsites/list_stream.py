@@ -10,6 +10,7 @@ from singer_sdk.typing import (
     StringType,
 )
 
+from singer_sdk.helpers._typing import TypeConformanceLevel
 from tap_sharepointsites.client import sharepointsitesStream
 
 SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
@@ -26,8 +27,10 @@ class ListStream(sharepointsitesStream):
         return self.config["api_url"]
 
     primary_keys = ["id"]
-
     replication_key = None
+    
+    TYPE_CONFORMANCE_LEVEL = TypeConformanceLevel.ROOT_ONLY
+    
     schema = PropertiesList(
         Property("@odata.etag", StringType),
         Property("createdDateTime", StringType),
