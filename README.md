@@ -61,6 +61,17 @@ Example config:
 
 You can sync the content of sharepoint web pages, typically relevant for LLM/RAG type of use cases. The Microsoft Graph endpoint for pages is still in Beta, and does not work when logged in as a personal user. In order for it to work, you need to use a Managed Identity.
 
+Example config:
+
+```
+...
+  config:
+    ...
+    pages: true
+  ...
+```
+
+
 <!--
 
 Developer TODO: Update the below as needed to correctly describe the install procedure. For instance, if you do not have a PyPi repo, or if you want users to directly install from your git repo, you can modify this step as appropriate.
