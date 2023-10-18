@@ -44,7 +44,7 @@ class PagesStream(sharepointsitesStream):
         return headers
 
     name = "pages"
-    
+
     @property
     def url_base(self) -> str:
         """Return the API URL root, configurable via tap settings."""
@@ -75,7 +75,7 @@ class PagesStream(sharepointsitesStream):
         for i in range(num_chunks):
             start = i * chunk_length
             end = start + chunk_length if i < num_chunks - 1 else text_length
-            chunks.append(text_array[start:end].join(" "))
+            chunks.append(" ".join(text_array[start:end]))
 
         return chunks
 
