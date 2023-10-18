@@ -69,7 +69,7 @@ class Tapsharepointsites(Tap):
             th.BooleanType,
             required=False,
             description="Whether or not to sync pages",
-        )
+        ),
         th.Property(
             "client_id",
             th.DateTimeType,

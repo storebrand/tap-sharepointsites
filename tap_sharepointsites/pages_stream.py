@@ -21,7 +21,7 @@ class PagesStream(sharepointsitesStream):
 
     def __init__(self, *args, **kwargs):
         """Init Page Stream."""
-        self.page_config = kwargs.pop("page_config")
+        
         self._header = None
         # self.header = self._get_headers()
         super().__init__(*args, **kwargs)
@@ -43,6 +43,8 @@ class PagesStream(sharepointsitesStream):
 
         return headers
 
+    name = "pages"
+    
     @property
     def url_base(self) -> str:
         """Return the API URL root, configurable via tap settings."""
@@ -130,7 +132,7 @@ class PagesStream(sharepointsitesStream):
 
     def get_content_for_page(self, id):
         """Get content for page."""
-        
+
         base_url = (
             f"https://graph.microsoft.com/beta/sites/{self.site_id}/pages/"
             f"{id}/microsoft.graph.sitepage/webparts"
