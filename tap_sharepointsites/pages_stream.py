@@ -206,4 +206,4 @@ class PagesStream(sharepointsitesStream):
             node_text = node_text.replace("\n", " ")
             if node_text:
                 html_texts.append(node_text)
-        return html_texts
+        return "\n".join(html_texts)
