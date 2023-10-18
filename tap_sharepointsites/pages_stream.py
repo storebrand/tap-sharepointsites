@@ -148,7 +148,7 @@ class PagesStream(sharepointsitesStream):
             if element.get("innerHtml")
         ])
 
-        return '\n'.join(htmls)
+        return htmls
 
 
     def request_records(self, context) -> t.Iterable[dict]:
