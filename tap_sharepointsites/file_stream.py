@@ -12,7 +12,7 @@ from singer_sdk import metrics
 from tap_sharepointsites.client import sharepointsitesStream
 from tap_sharepointsites.file_handlers.csv_handler import CSVHandler
 from tap_sharepointsites.file_handlers.excel_handler import ExcelHandler
-
+from tap_sharepointsites.utils import snakecase
 
 class FilesStream(sharepointsitesStream):
     """Define custom stream."""
@@ -137,6 +137,21 @@ class FilesStream(sharepointsitesStream):
 
                     yield row
 
+    @staticmethod
+    def snakecase(name):
+        # Convert camelCase to snake_case
+        name = re.sub("(.)([A-Z][a-z]+)", r"\1_\2", name)
+        name = re.sub("([a-z0-9])([A-Z])", r"\1_\2", name)
+        
+        # Replace any non-alphanumeric characters with underscores
+        name = re.sub(r"[^a-zA-Z0-9_]+", "_", name)
+        
+        # Replace any sequence of multiple underscores with a single underscore
+        name = re.sub(r"_{2,}", "_", name)
+        
+        return name.lower()
+
+
     @cached_property
     def schema(self):
         """Create a schema for a *SV file."""
@@ -156,15 +171,8 @@ class FilesStream(sharepointsitesStream):
                     dr = ExcelHandler(file)
 
                 properties = {}
-                formatted_key = [
-                    re.sub(r"[^\w\s]", "", formatted_key)
-                    for formatted_key in dr.fieldnames
-                ]
-                formatted_key = [
-                    re.sub(r"\s+", "_", formatted_key)
-                    for formatted_key in formatted_key
-                ]
-                fieldnames = [formatted_key.lower() for formatted_key in formatted_key]
+
+                fieldnames = [snakecase(unformatted_key) for unformatted_key in dr.fieldnames]
 
                 extra_cols = [
                     "_sdc_source_file",
