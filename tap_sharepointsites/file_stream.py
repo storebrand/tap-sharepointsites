@@ -115,7 +115,9 @@ class FilesStream(sharepointsitesStream):
                 if self.file_config["file_type"] == "csv":
                     file = self.get_file_for_row(record)
                     dr = CSVHandler(
-                        file, self.file_config.get("delimiter", ",")
+                        file, 
+                        self.file_config.get("delimiter", ","),
+                        self.file_config.get("clean_colnames", False)
                     ).get_dictreader()
 
                 elif self.file_config["file_type"] == "excel":
@@ -136,20 +138,6 @@ class FilesStream(sharepointsitesStream):
                     )
 
                     yield row
-
-    @staticmethod
-    def snakecase(name):
-        # Convert camelCase to snake_case
-        name = re.sub("(.)([A-Z][a-z]+)", r"\1_\2", name)
-        name = re.sub("([a-z0-9])([A-Z])", r"\1_\2", name)
-        
-        # Replace any non-alphanumeric characters with underscores
-        name = re.sub(r"[^a-zA-Z0-9_]+", "_", name)
-        
-        # Replace any sequence of multiple underscores with a single underscore
-        name = re.sub(r"_{2,}", "_", name)
-        
-        return name.lower()
 
 
     @cached_property
@@ -172,7 +160,14 @@ class FilesStream(sharepointsitesStream):
 
                 properties = {}
 
-                fieldnames = [snakecase(unformatted_key) for unformatted_key in dr.fieldnames]
+                if self.file_config.get("clean_colnames", False):
+                    fieldnames = [
+                        snakecase(unformatted_key)
+                        for unformatted_key in dr.fieldnames
+                    ]
+                else:
+                    fieldnames = dr.fieldnames
+
 
                 extra_cols = [
                     "_sdc_source_file",

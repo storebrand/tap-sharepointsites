@@ -58,6 +58,12 @@ class Tapsharepointsites(Tap):
                         required=False,
                         description="For CSV files: the delimiter to use",
                     ),
+                    th.Property(
+                        "clean_colnames",
+                        th.BooleanType,
+                        required=False,
+                        default=False,
+                        description="Replace special characters and convert to snakecase",
                 ),
             ),
             required=False,

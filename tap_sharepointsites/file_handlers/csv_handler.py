@@ -11,10 +11,11 @@ LOGGER = logging.getLogger(__name__)
 class CSVHandler:
     """Handle CSV files."""
 
-    def __init__(self, textcontent, delimiter=","):
+    def __init__(self, textcontent, delimiter=",", clean_colnames=False):
         """Initialize ExcelHandler."""
         self.textcontent = textcontent
         self.delimiter = delimiter
+        self.clean_colnames = clean_colnames
 
     def get_dictreader(self):
         """Read CSV file and return csv DictReader object for the file."""
@@ -25,6 +26,7 @@ class CSVHandler:
             delimiter=self.delimiter,
         )
 
-        dr.fieldnames = [snakecase(key) for key in dr.fieldnames.copy()]
+        if self.clean_colnames:
+            dr.fieldnames = [snakecase(key) for key in dr.fieldnames.copy()]
 
         return dr
