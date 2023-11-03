@@ -52,9 +52,9 @@ class ExcelHandler:
                 formatted_key = header_cell.value
 
 
-                if self.clean_colnames:
-                    self.logger.info("cleaning colnames")
-                    formatted_key = snakecase(formatted_key)
+                # if self.clean_colnames:
+                #     self.logger.info("cleaning colnames")
+                #     formatted_key = snakecase(formatted_key)
 
                 if not formatted_key:
                     formatted_key = ""  # default to empty string for key
