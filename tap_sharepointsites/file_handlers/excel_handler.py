@@ -12,7 +12,7 @@ LOGGER = logging.getLogger(__name__)
 class ExcelHandler:
     """Handle Excel files."""
 
-    def __init__(self, textcontent, clean_colnames):
+    def __init__(self, textcontent, clean_colnames=False):
         """Initialize ExcelHandler."""
         self.xlsheet = self._load_workbook(textcontent)
         self.clean_colnames = clean_colnames

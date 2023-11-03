@@ -122,7 +122,10 @@ class FilesStream(sharepointsitesStream):
 
                 elif self.file_config["file_type"] == "excel":
                     file = self.get_file_for_row(record, text=False)
-                    dr = ExcelHandler(file, clean_colnames=self.file_config.get("clean_colnames")).get_row_iterator()
+                    dr = ExcelHandler(
+                            file, 
+                            clean_colnames=self.file_config.get("clean_colnames", False)
+                        ).get_row_iterator()
                 else:
                     filetype_name = self.file_config.get("file_type", "unknown")
                     raise Exception(f"File type { filetype_name } not supported (yet)")
