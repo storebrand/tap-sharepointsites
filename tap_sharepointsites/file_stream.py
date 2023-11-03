@@ -167,6 +167,11 @@ class FilesStream(sharepointsitesStream):
                 properties = {}
 
 
+                fieldnames = [name for name in dr.fieldnames]
+
+                if self.file_config.get("clean_colnames", False):
+                    fieldnames = [snakecase(name) for name in fieldnames]
+
                 extra_cols = [
                     "_sdc_source_file",
                     "_sdc_row_num",
@@ -174,11 +179,10 @@ class FilesStream(sharepointsitesStream):
                     "lastModifiedDateTime",
                 ]
 
-                for field in dr.fieldnames + extra_cols:
+                for field in fieldnames + extra_cols:
                     properties.update({field: {"type": ["null", "string"]}})
 
-                if self.file_config.get("clean_colnames", False):
-                    properties = {snakecase(k): v for k, v in properties.items()}
+
                     
 
                 return {"properties": properties}
