@@ -130,13 +130,8 @@ class FilesStream(sharepointsitesStream):
                     filetype_name = self.file_config.get("file_type", "unknown")
                     raise Exception(f"File type { filetype_name } not supported (yet)")
 
-                if self.file_config.get("clean_colnames", False):
-                    dr.fieldnames = [
-                        snakecase(unformatted_key)
-                        for unformatted_key in dr.fieldnames
-                    ]
-                    
                 for i, row in enumerate(dr):
+
                     row.update(
                         {
                             "_sdc_source_file": record["name"],
@@ -145,7 +140,9 @@ class FilesStream(sharepointsitesStream):
                             "lastModifiedDateTime": record["lastModifiedDateTime"],
                         }
                     )
-
+                    if self.file_config.get("clean_colnames", False):
+                        row = {snakecase(k): v for k, v in row.items()}
+                    
                     yield row
 
 
