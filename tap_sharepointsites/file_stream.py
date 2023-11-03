@@ -132,6 +132,9 @@ class FilesStream(sharepointsitesStream):
 
                 for i, row in enumerate(dr):
 
+                    if self.file_config.get("clean_colnames", False):
+                        row = {snakecase(k): v for k, v in row.items()}
+                        
                     row.update(
                         {
                             "_sdc_source_file": record["name"],
@@ -140,8 +143,7 @@ class FilesStream(sharepointsitesStream):
                             "lastModifiedDateTime": record["lastModifiedDateTime"],
                         }
                     )
-                    if self.file_config.get("clean_colnames", False):
-                        row = {snakecase(k): v for k, v in row.items()}
+
                     
                     yield row
 
