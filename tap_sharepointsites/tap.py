@@ -64,6 +64,7 @@ class Tapsharepointsites(Tap):
                         required=False,
                         default=False,
                         description="Replace special characters and convert to snakecase",
+                    )
                 ),
             ),
             required=False,

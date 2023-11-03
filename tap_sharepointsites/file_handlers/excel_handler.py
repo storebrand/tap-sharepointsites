@@ -53,6 +53,7 @@ class ExcelHandler:
 
 
                 if self.clean_colnames:
+                    self.logger.info("cleaning colnames")
                     formatted_key = snakecase(formatted_key)
 
                 if not formatted_key:
