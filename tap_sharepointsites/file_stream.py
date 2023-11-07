@@ -116,15 +116,13 @@ class FilesStream(sharepointsitesStream):
                     file = self.get_file_for_row(record)
                     dr = CSVHandler(
                         file, 
-                        self.file_config.get("delimiter", ","),
-                        self.file_config.get("clean_colnames", False)
+                        self.file_config.get("delimiter", ",")
                     ).get_dictreader()
 
                 elif self.file_config["file_type"] == "excel":
                     file = self.get_file_for_row(record, text=False)
                     dr = ExcelHandler(
-                            file, 
-                            clean_colnames=self.file_config.get("clean_colnames", False)
+                            file
                         ).get_row_iterator()
                 else:
                     filetype_name = self.file_config.get("file_type", "unknown")

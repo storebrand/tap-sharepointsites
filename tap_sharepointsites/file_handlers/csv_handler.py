@@ -11,7 +11,7 @@ LOGGER = logging.getLogger(__name__)
 class CSVHandler:
     """Handle CSV files."""
 
-    def __init__(self, textcontent, delimiter=",", clean_colnames=False):
+    def __init__(self, textcontent, delimiter=","):
         """Initialize ExcelHandler."""
         self.textcontent = textcontent
         self.delimiter = delimiter
@@ -25,8 +25,5 @@ class CSVHandler:
             restkey="_sdc_extra",
             delimiter=self.delimiter,
         )
-
-        if self.clean_colnames:
-            dr.fieldnames = [snakecase(key) for key in dr.fieldnames.copy()]
 
         return dr

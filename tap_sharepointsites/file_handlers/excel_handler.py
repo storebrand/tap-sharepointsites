@@ -12,10 +12,9 @@ LOGGER = logging.getLogger(__name__)
 class ExcelHandler:
     """Handle Excel files."""
 
-    def __init__(self, textcontent, clean_colnames=False):
+    def __init__(self, textcontent):
         """Initialize ExcelHandler."""
         self.xlsheet = self._load_workbook(textcontent)
-        self.clean_colnames = clean_colnames
 
     def _load_workbook(self, textcontent):
         """Load workbook from textcontent."""
@@ -50,11 +49,6 @@ class ExcelHandler:
                 header_cell = header_row[index]
 
                 formatted_key = header_cell.value
-
-
-                # if self.clean_colnames:
-                #     self.logger.info("cleaning colnames")
-                #     formatted_key = snakecase(formatted_key)
 
                 if not formatted_key:
                     formatted_key = ""  # default to empty string for key
