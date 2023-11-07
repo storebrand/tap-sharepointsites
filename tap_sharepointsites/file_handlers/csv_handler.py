@@ -3,6 +3,7 @@
 import csv
 import logging
 import re
+
 from tap_sharepointsites.utils import snakecase
 
 LOGGER = logging.getLogger(__name__)

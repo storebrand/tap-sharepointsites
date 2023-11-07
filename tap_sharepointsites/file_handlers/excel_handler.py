@@ -3,8 +3,10 @@
 import logging
 import re
 import tempfile
-from tap_sharepointsites.utils import snakecase
+
 import openpyxl
+
+from tap_sharepointsites.utils import snakecase
 
 LOGGER = logging.getLogger(__name__)
 
@@ -52,7 +54,6 @@ class ExcelHandler:
 
                 if not formatted_key:
                     formatted_key = ""  # default to empty string for key
-
 
                 to_return[formatted_key] = (
                     str(cell.value) if cell.value is not None else ""
