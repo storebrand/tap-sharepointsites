@@ -142,7 +142,7 @@ class FilesStream(sharepointsitesStream):
                         }
                     )
 
-                    
+
                     yield row
 
 
