@@ -9,7 +9,7 @@ from singer_sdk import typing as th  # JSON schema typing helpers
 
 from tap_sharepointsites.file_stream import FilesStream
 from tap_sharepointsites.list_stream import ListStream
-
+from tap_sharepointsites.text_stream import TextStream
 
 class Tapsharepointsites(Tap):
     """sharepointsites tap class."""
@@ -71,6 +71,33 @@ class Tapsharepointsites(Tap):
             description="Files to sync",
         ),
         th.Property(
+            "textfiles",
+            th.ArrayType(
+                th.ObjectType(
+                    th.Property(
+                        "name",
+                        th.StringType,
+                        required=True,
+                        description="The name of the stream",
+                    ),
+                    th.Property(
+                        "file_pattern",
+                        th.StringType,
+                        required=True,
+                        description="The file pattern to match",
+                    ),
+                    th.Property(
+                        "folder",
+                        th.StringType,
+                        required=True,
+                        description="The folder to search",
+                    ),
+                ),
+            ),
+        required=False,
+        description="Textfiles to sync",
+        ),
+        th.Property(
             "client_id",
             th.DateTimeType,
             required=False,
@@ -78,27 +105,6 @@ class Tapsharepointsites(Tap):
         ),
     ).to_dict()
 
-    def get_file_configs(self) -> List[dict]:
-        """Return a list of file configs.
-
-        Either directly from the config.json or in an external file
-        defined by csv_files_definition.
-        """
-        csv_files = self.config.get("files")
-        csv_files_definition = self.config.get("csv_files_definition")
-        if csv_files_definition:
-            if os.path.isfile(csv_files_definition):
-                with open(csv_files_definition, "r") as f:
-                    csv_files = json.load(f)
-            else:
-                self.logger.error(
-                    f"tap-sharepoint: '{csv_files_definition}' file not found"
-                )
-                exit(1)
-        if not csv_files:
-            self.logger.error("No CSV file definitions found.")
-            exit(1)
-        return csv_files
 
     def discover_streams(self) -> List[Stream]:
         """Return a list of discovered streams."""
@@ -126,7 +132,19 @@ class Tapsharepointsites(Tap):
         else:
             files_streams = []
 
-        all_streams = list_streams + files_streams
+        if self.config.get("text_files"):
+            text_streams = [
+                TextStream(
+                    tap=self,
+                    name=text["name"],
+                    text_config=text,
+                )
+                for text in self.config["text_files"]
+            ]
+        else:
+            text_streams = []
+
+        all_streams = list_streams + files_streams + text_streams
 
         self.logger.info(f"Discovered {len(all_streams)} streams")
 
