@@ -12,6 +12,7 @@ from singer_sdk import metrics
 from tap_sharepointsites.client import sharepointsitesStream
 from tap_sharepointsites.file_handlers.csv_handler import CSVHandler
 from tap_sharepointsites.file_handlers.excel_handler import ExcelHandler
+from tap_sharepointsites.utils import snakecase
 
 
 class FilesStream(sharepointsitesStream):
@@ -126,6 +127,10 @@ class FilesStream(sharepointsitesStream):
                     raise Exception(f"File type { filetype_name } not supported (yet)")
 
                 for i, row in enumerate(dr):
+
+                    if self.file_config.get("clean_colnames", False):
+                        row = {snakecase(k): v for k, v in row.items()}
+
                     row.update(
                         {
                             "_sdc_source_file": record["name"],
@@ -156,15 +161,11 @@ class FilesStream(sharepointsitesStream):
                     dr = ExcelHandler(file)
 
                 properties = {}
-                formatted_key = [
-                    re.sub(r"[^\w\s]", "", formatted_key)
-                    for formatted_key in dr.fieldnames
-                ]
-                formatted_key = [
-                    re.sub(r"\s+", "_", formatted_key)
-                    for formatted_key in formatted_key
-                ]
-                fieldnames = [formatted_key.lower() for formatted_key in formatted_key]
+
+                fieldnames = [name for name in dr.fieldnames]
+
+                if self.file_config.get("clean_colnames", False):
+                    fieldnames = [snakecase(name) for name in fieldnames]
 
                 extra_cols = [
                     "_sdc_source_file",

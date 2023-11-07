@@ -41,6 +41,7 @@ The file configuration accepts an array of objects, with keys:
 - `folder`: Subfolder where the files are located
 - `file_type`: Type (format) of file to load, either `csv` or `excel`.
 - `delimiter`: Field delimiter for CSV files. default `,`
+- `clean_colnames`: Whether to convert column names to snake_case. default `false`
 
 Example config:
 
@@ -53,6 +54,7 @@ Example config:
       file_pattern: employees_.*\.csv
       folder: hr_data/raw
       file_type: csv
+      clean_colnames: true
   ...
 ```
 
