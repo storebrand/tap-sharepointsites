@@ -123,6 +123,7 @@ class TextStream(sharepointsitesStream):
 
                 row = {
                         "content": text.decode("utf-8"),
+                        "metadata": {"source": record["name"]},
                         "_sdc_source_file": record["name"],
                         "_sdc_loaded_at": str(datetime.datetime.utcnow()),
                         "lastModifiedDateTime": record["lastModifiedDateTime"],
@@ -135,6 +136,15 @@ class TextStream(sharepointsitesStream):
         th.Property(
             "content",
             th.StringType,
+        ),
+        th.Property(
+            "metadata",
+            th.ObjectType(
+                th.Property(
+                    "source",
+                    th.StringType,
+                ),
+            ),
         ),
         th.Property(
             "_sdc_source_file",
