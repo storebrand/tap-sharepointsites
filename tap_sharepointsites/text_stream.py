@@ -21,7 +21,7 @@ class TextStream(sharepointsitesStream):
 
     records_jsonpath = "$.value[*]"
     replication_key = "lastModifiedDateTime"
-    primary_keys = ["_sdc_source_file", "_sdc_row_num"]
+    primary_keys = ["_sdc_source_file"]
 
     # schema_filepath = SCHEMAS_DIR / "files.json"
 
