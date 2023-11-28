@@ -1,3 +1,5 @@
+"""Utility functions for tap-sharepointsites."""
+
 import re
 
 
