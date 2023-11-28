@@ -4,8 +4,6 @@ import csv
 import logging
 import re
 
-from tap_sharepointsites.utils import snakecase
-
 LOGGER = logging.getLogger(__name__)
 
 
@@ -16,7 +14,13 @@ class CSVHandler:
         """Initialize ExcelHandler."""
         self.textcontent = textcontent
         self.delimiter = delimiter
-        self.clean_colnames = clean_colnames
+
+    @staticmethod
+    def format_key(key):
+        """Format key."""
+        formatted_key = re.sub(r"[^\w\s]", "", key)
+        formatted_key = re.sub(r"\s+", "_", formatted_key)
+        return formatted_key.lower()
 
     def get_dictreader(self):
         """Read CSV file and return csv DictReader object for the file."""
@@ -26,5 +30,7 @@ class CSVHandler:
             restkey="_sdc_extra",
             delimiter=self.delimiter,
         )
+
+        dr.fieldnames = [self.format_key(key) for key in dr.fieldnames.copy()]
 
         return dr

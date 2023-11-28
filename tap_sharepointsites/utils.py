@@ -1,8 +1,10 @@
+"""Utility functions for tap-sharepointsites."""
+
 import re
 
 
 def snakecase(name):
-    # Convert camelCase to snake_case
+    """Convert a string to snake_case."""
     name = re.sub("(.)([A-Z][a-z]+)", r"\1_\2", name)
     name = re.sub("([a-z0-9])([A-Z])", r"\1_\2", name)
 

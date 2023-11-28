@@ -9,6 +9,7 @@ from singer_sdk import typing as th  # JSON schema typing helpers
 
 from tap_sharepointsites.file_stream import FilesStream
 from tap_sharepointsites.list_stream import ListStream
+from tap_sharepointsites.pages_stream import PagesStream
 
 
 class Tapsharepointsites(Tap):
@@ -71,6 +72,12 @@ class Tapsharepointsites(Tap):
             description="Files to sync",
         ),
         th.Property(
+            "pages",
+            th.BooleanType,
+            required=False,
+            description="Boolean, Whether or not to sync pages",
+        ),
+        th.Property(
             "client_id",
             th.DateTimeType,
             required=False,
@@ -126,9 +133,14 @@ class Tapsharepointsites(Tap):
         else:
             files_streams = []
 
-        all_streams = list_streams + files_streams
+        if self.config.get("pages"):
+            pages_streams = [PagesStream(tap=self)]
+        else:
+            pages_streams = []
 
-        self.logger.info(f"Discovered {len(all_streams)} streams")
+        all_streams = list_streams + files_streams + pages_streams
+
+        self.logger.debug(f"Discovered {len(all_streams)} streams")
 
         return all_streams
 

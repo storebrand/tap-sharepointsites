@@ -23,6 +23,7 @@ Built with the [Meltano Tap SDK](https://sdk.meltano.com) for Singer Taps.
 | api_url             | True     | None    | The url for the API service |
 | lists               | False    | None    | The name of the list to sync |
 | files               | False    | None    | Files to sync |
+| pages               | False    | None    | Whether or not to sync pages |
 | client_id           | False    | None    | Managed Identity Client ID |
 | stream_maps         | False    | None    | Config object for stream maps capability. For more information check out [Stream Maps](https://sdk.meltano.com/en/latest/stream_maps.html). |
 | stream_map_config   | False    | None    | User-defined config values to be used within map expressions. |
@@ -57,6 +58,21 @@ Example config:
       clean_colnames: true
   ...
 ```
+
+## Web pages
+
+You can sync the content of sharepoint web pages, typically relevant for LLM/RAG type of use cases. The Microsoft Graph endpoint for pages is still in Beta, and does not work when logged in as a personal user. In order for it to work, you need to use a Managed Identity.
+
+Example config:
+
+```
+...
+  config:
+    ...
+    pages: true
+  ...
+```
+
 
 <!--
 
