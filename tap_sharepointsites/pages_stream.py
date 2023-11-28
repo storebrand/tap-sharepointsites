@@ -7,7 +7,7 @@ import requests
 from azure.identity import DefaultAzureCredential, ManagedIdentityCredential
 from selectolax.parser import HTMLParser
 from singer_sdk import metrics
-from singer_sdk.typing import ObjectType, PropertiesList, Property, StringType, IntegerType
+from singer_sdk.typing import IntegerType, PropertiesList, Property, StringType
 
 from tap_sharepointsites.client import sharepointsitesStream
 
@@ -21,7 +21,6 @@ class PagesStream(sharepointsitesStream):
 
     def __init__(self, *args, **kwargs):
         """Init Page Stream."""
-        
         self._header = None
         # self.header = self._get_headers()
         super().__init__(*args, **kwargs)
@@ -58,7 +57,6 @@ class PagesStream(sharepointsitesStream):
     @property
     def path(self) -> str:
         """Return the API endpoint path, configurable via tap settings."""
-
         base_url = f"/beta/sites/{self.site_id}/pages"
 
         return base_url
@@ -94,13 +92,12 @@ class PagesStream(sharepointsitesStream):
         ).to_dict()
         return schema
 
-
     @property
     def site_id(self):
+        """Return ID of specified Sharepoint Site."""
         full_url = self.config.get("api_url")
         response = requests.get(full_url, headers=self.header)
         return response.json()["id"]
-
 
     def parse_response(self, response: requests.Response, context) -> t.Iterable[dict]:
         """Parse the response and return an iterator of result records."""
@@ -112,10 +109,7 @@ class PagesStream(sharepointsitesStream):
         for record in resp_values:
             if record["lastModifiedDateTime"] > files_since:
 
-                page_element = self.get_content_for_page(
-                    record["id"]
-                ) 
-
+                page_element = self.get_content_for_page(record["id"])
 
                 chunks = self.simple_chunker(page_element, 3000)
                 for j, chunk in enumerate(chunks):
@@ -132,7 +126,6 @@ class PagesStream(sharepointsitesStream):
 
     def get_content_for_page(self, id):
         """Get content for page."""
-
         base_url = (
             f"https://graph.microsoft.com/beta/sites/{self.site_id}/pages/"
             f"{id}/microsoft.graph.sitepage/webparts"
@@ -142,16 +135,17 @@ class PagesStream(sharepointsitesStream):
         page_content.raise_for_status()
 
         data = page_content.json()
-        htmls = ''.join([
-            element.get("innerHtml")
-            for element in data["value"]
-            if element.get("innerHtml")
-        ])
+        htmls = "".join(
+            [
+                element.get("innerHtml")
+                for element in data["value"]
+                if element.get("innerHtml")
+            ]
+        )
 
         parsed_htmls = self.parse_html(htmls)
 
         return parsed_htmls
-
 
     def request_records(self, context) -> t.Iterable[dict]:
         """Request records from REST endpoint(s), returning response records.
@@ -186,10 +180,9 @@ class PagesStream(sharepointsitesStream):
 
                 paginator.advance(resp)
 
-
     @staticmethod
     def parse_html(html_string: str):
-        
+        """Parse html string and return decently formatted text."""
         unwrap_tags = ["em", "strong", "b", "i", "span", "a", "code", "kbd"]
         remove_tags = ["script", "style"]
 
