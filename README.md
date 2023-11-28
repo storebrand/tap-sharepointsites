@@ -14,7 +14,6 @@ Built with the [Meltano Tap SDK](https://sdk.meltano.com) for Singer Taps.
 * `about`
 * `stream-maps`
 * `schema-flattening`
-* `batch`
 
 ## Settings
 

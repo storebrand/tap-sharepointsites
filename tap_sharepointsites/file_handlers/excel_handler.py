@@ -1,7 +1,6 @@
 """Handle Excel files."""
 
 import logging
-import re
 import tempfile
 
 import openpyxl
@@ -36,8 +35,7 @@ class ExcelHandler:
         """Return fieldnames."""
         return [c.value for c in self.xlsheet[1]]
 
-    @staticmethod
-    def generator_wrapper(reader):
+    def generator_wrapper(self, reader):
         """Wrap a reader in a generator."""
         header_row = None
         for row in reader:
@@ -50,16 +48,11 @@ class ExcelHandler:
                 header_cell = header_row[index]
 
                 formatted_key = header_cell.value
+
                 if not formatted_key:
                     formatted_key = ""  # default to empty string for key
 
-                # remove non-word, non-whitespace characters
-                formatted_key = re.sub(r"[^\w\s]", "", formatted_key)
-
-                # replace whitespace with underscores
-                formatted_key = re.sub(r"\s+", "_", formatted_key)
-
-                to_return[formatted_key.lower()] = (
+                to_return[formatted_key] = (
                     str(cell.value) if cell.value is not None else ""
                 )
 
