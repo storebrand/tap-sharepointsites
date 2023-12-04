@@ -2,18 +2,16 @@
 
 import datetime
 import re
-import typing as t
-from functools import cached_property
 import tempfile
+import typing as t
+
 import requests
+import textract
 from azure.identity import DefaultAzureCredential, ManagedIdentityCredential
 from singer_sdk import metrics
 from singer_sdk import typing as th
+
 from tap_sharepointsites.client import sharepointsitesStream
-from tap_sharepointsites.file_handlers.csv_handler import CSVHandler
-from tap_sharepointsites.file_handlers.excel_handler import ExcelHandler
-from tap_sharepointsites.utils import snakecase
-import textract
 
 
 class TextStream(sharepointsitesStream):
@@ -21,7 +19,7 @@ class TextStream(sharepointsitesStream):
 
     records_jsonpath = "$.value[*]"
     replication_key = "lastModifiedDateTime"
-    primary_keys = None #["_sdc_source_file"]
+    primary_keys = None  # ["_sdc_source_file"]
 
     # schema_filepath = SCHEMAS_DIR / "files.json"
 
@@ -122,15 +120,14 @@ class TextStream(sharepointsitesStream):
                     text = textract.process(tmpfile.name)
 
                 row = {
-                        "content": text.decode("utf-8"),
-                        "metadata": {"source": record["name"]},
-                        "_sdc_source_file": record["name"],
-                        "_sdc_loaded_at": str(datetime.datetime.utcnow()),
-                        "lastModifiedDateTime": record["lastModifiedDateTime"],
-                    }
+                    "content": text.decode("utf-8"),
+                    "metadata": {"source": record["name"]},
+                    "_sdc_source_file": record["name"],
+                    "_sdc_loaded_at": str(datetime.datetime.utcnow()),
+                    "lastModifiedDateTime": record["lastModifiedDateTime"],
+                }
 
                 yield row
-
 
     schema = th.PropertiesList(
         th.Property(
@@ -160,9 +157,8 @@ class TextStream(sharepointsitesStream):
             "lastModifiedDateTime",
             th.StringType,
             description="The last time the file was updated",
-        )
+        ),
     ).to_dict()
-    
 
     def get_drive_id(self):
         """Get drives in the sharepoint site."""
