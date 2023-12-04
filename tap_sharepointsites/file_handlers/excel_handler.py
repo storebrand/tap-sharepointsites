@@ -1,12 +1,9 @@
 """Handle Excel files."""
 
 import logging
-import re
 import tempfile
 
 import openpyxl
-
-from tap_sharepointsites.utils import snakecase
 
 LOGGER = logging.getLogger(__name__)
 
