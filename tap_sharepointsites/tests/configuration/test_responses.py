@@ -3,7 +3,7 @@
 graph_response_list = """
 {
     "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#sites('root')/lists('d7689e2b-941a-4cd3-bb24-55cddee54294')/items",
-    "@odata.nextLink": "https://graph.microsoft.com/v1.0/sites/root/lists/d7689e2b-941a-4cd3-bb24-55cddee54294/items?$top=1&$skiptoken=UGFnZWQ9VFJVRSZwX0lEPTY",
+    "@odata.nextLink_disabled": "https://graph.microsoft.com/v1.0/sites/root/lists/d7689e2b-941a-4cd3-bb24-55cddee54294/items?$top=1&$skiptoken=UGFnZWQ9VFJVRSZwX0lEPTY",
     "value": [
         {
             "@odata.etag": "c8cf0cd9-826e-4295-8c52-e2c201739dc5,13",
