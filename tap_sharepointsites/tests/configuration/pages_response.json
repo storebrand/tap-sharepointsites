@@ -1,0 +1,164 @@
+{
+    "@odata.context": "https://graph.microsoft.com/beta/$metadata#sites('abc')/pages",
+    "@microsoft.graph.tips": "If you have to deal with Microsoft APIs, consider a career change",
+    "value": [
+        {
+            "@odata.type": "#microsoft.graph.sitePage",
+            "@odata.etag": "\"{111-bfsv-bfdv-bfdsb-bvfedabgtf},11\"",
+            "description": "Side opp og side ned",
+            "eTag": "\"{111-bfsv-bfdv-bfdsb-bvfedabgtf},11\"",
+            "id": "111-bfsv-bfdv-bfdsb-bvfedabgtf",
+            "lastModifiedDateTime": "2023-08-28T06:45:48Z",
+            "name": "Enda-en-side.aspx",
+            "webUrl": "SitePages/Enda-en-side.aspx",
+            "title": "Enda en side",
+            "pageLayout": "article",
+            "thumbnailWebUrl": "https://media.akamai.odsp.cdn.office.net/m365x214355.sharepoint.com/_layouts/15/images/sitepagethumbnail.png",
+            "promotionKind": "page",
+            "showComments": true,
+            "showRecommendedPages": false,
+            "contentType": {
+                "id": "0x0fEDWSAVFCD1ChliALHIFERWDIHLF5",
+                "name": "Site Page"
+            },
+            "createdBy": {
+                "user": {
+                    "displayName": "McDataface, Data",
+                    "email": "Data.McDataface@m365x214355.co"
+                }
+            },
+            "lastModifiedBy": {
+                "user": {
+                    "displayName": "McDataface, Data",
+                    "email": "Data.McDataface@m365x214355.co"
+                }
+            },
+            "parentReference": {
+                "siteId": "42e5c427-b553-45b9-bdc9-4c0fdf5caf77"
+            },
+            "publishingState": {
+                "level": "published",
+                "versionId": "1.0"
+            },
+            "reactions": {},
+            "titleArea": {
+                "enableGradientEffect": true,
+                "imageWebUrl": "/_layouts/15/images/sleektemplateimagetile.jpg",
+                "layout": "overlap",
+                "showAuthor": true,
+                "showPublishedDate": false,
+                "showTextBlockAboveTitle": false,
+                "textAboveTitle": "",
+                "textAlignment": "left",
+                "imageSourceType": 2,
+                "title": "Enda en side",
+                "authorByline@odata.type": "#Collection(String)",
+                "authorByline": [
+                    "i:0#.f|membership|Data.McDataface@m365x214355.co"
+                ],
+                "isDecorative": true,
+                "hasTitleBeenCommitted": true,
+                "authors@odata.type": "#Collection(microsoft.graph.Json)",
+                "authors": [
+                    {
+                        "id": "i:0#.f|membership|Data.McDataface@m365x214355.co",
+                        "upn": "Data.McDataface@m365x214355.co",
+                        "email": "Data.McDataface@m365x214355.co",
+                        "name": "McDataface, Data",
+                        "role": "Dataclown"
+                    }
+                ],
+                "serverProcessedContent": {
+                    "htmlStrings": [],
+                    "searchablePlainTexts": [],
+                    "links": [],
+                    "imageSources": [
+                        {
+                            "key": "imageSource",
+                            "value": "/_layouts/15/images/sleektemplateimagetile.jpg"
+                        }
+                    ],
+                    "customMetadata": [
+                        {
+                            "key": "imageSource",
+                            "value": {}
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "@odata.type": "#microsoft.graph.sitePage",
+            "@odata.etag": "\"{222-bfsv-bfdv-bfdsb-bvfedabgtf},21\"",
+            "description": "Med litt innhold tekst og greier. Husk å spise lunsj. Early Cryptocurrency Scams: Tales of Deception and Caution In the annals of cryptocurrency history, early scams loom large as cautionary tales, reminding us of the wild, uncharted terrain the dig…",
+            "eTag": "\"{222-bfsv-bfdv-bfdsb-bvfedabgtf},21\"",
+            "id": "222-bfsv-bfdv-bfdsb-bvfedabgtf",
+            "lastModifiedDateTime": "2023-10-18T07:01:59Z",
+            "name": "Yay-her-er-en-side!.aspx",
+            "webUrl": "SitePages/Yay-her-er-en-side!.aspx",
+            "title": "Yay her er en side!",
+            "pageLayout": "article",
+            "thumbnailWebUrl": "https://media.akamai.odsp.cdn.office.net/m365x214355.sharepoint.com/_layouts/15/images/sitepagethumbnail.png",
+            "promotionKind": "page",
+            "showComments": true,
+            "showRecommendedPages": true,
+            "contentType": {
+                "id": "0x0101009D1CB255DA76424F860D91F20E6C411800E13608C58EC1E046BFCDBBE7966B7295",
+                "name": "Site Page"
+            },
+            "createdBy": {
+                "user": {
+                    "displayName": "McDataface, Data",
+                    "email": "Data.McDataface@m365x214355.co"
+                }
+            },
+            "lastModifiedBy": {
+                "user": {
+                    "displayName": "McDataface, Data",
+                    "email": "Data.McDataface@m365x214355.co"
+                }
+            },
+            "parentReference": {
+                "siteId": "ggwrv4vv-v54g5r4bvt-b4b45-nb4nr45-m5rnm4mm654354"
+            },
+            "publishingState": {
+                "level": "published",
+                "versionId": "2.0"
+            },
+            "reactions": {},
+            "titleArea": {
+                "enableGradientEffect": true,
+                "layout": "imageAndTitle",
+                "showAuthor": true,
+                "showPublishedDate": false,
+                "showTextBlockAboveTitle": false,
+                "textAboveTitle": "",
+                "textAlignment": "left",
+                "title": "Yay her er en side!",
+                "imageSourceType": 4,
+                "isDecorative": true,
+                "authorByline@odata.type": "#Collection(String)",
+                "authorByline": [
+                    "i:0#.f|membership|Data.McDataface@m365x214355.co"
+                ],
+                "hasTitleBeenCommitted": true,
+                "authors@odata.type": "#Collection(microsoft.graph.Json)",
+                "authors": [
+                    {
+                        "id": "i:0#.f|membership|Data.McDataface@m365x214355.co",
+                        "upn": "Data.McDataface@m365x214355.co",
+                        "email": "Data.McDataface@m365x214355.co",
+                        "name": "McDataface, Data",
+                        "role": "Dataclown"
+                    }
+                ],
+                "serverProcessedContent": {
+                    "htmlStrings": [],
+                    "searchablePlainTexts": [],
+                    "links": [],
+                    "imageSources": []
+                }
+            }
+        }
+    ]
+}

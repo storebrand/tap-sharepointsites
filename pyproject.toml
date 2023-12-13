@@ -43,3 +43,6 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.scripts]
 # CLI declaration
 tap-sharepointsites = 'tap_sharepointsites.tap:Tapsharepointsites.cli'
+
+[tool.coverage.run]
+omit = ["*tests*"]

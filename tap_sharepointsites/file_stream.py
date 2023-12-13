@@ -184,11 +184,12 @@ class FilesStream(sharepointsitesStream):
 
     def get_drive_id(self):
         """Get drives in the sharepoint site."""
-        drive = requests.get(f'{self.config["api_url"]}/drive', headers=self.header)
+        drive = requests.get(f'{self.config["api_url"]}drive', headers=self.header)
 
         if not drive.ok:
             raise Exception(f"Error getting drive: {drive.status_code}: {drive.text}")
         return drive.json()["id"]
+
 
     def get_file_for_row(self, row_data, text=True):
         """Get the file for a row."""
@@ -201,6 +202,7 @@ class FilesStream(sharepointsitesStream):
             return file.text
         else:
             return file.content
+
 
     def get_properties(self, fieldnames) -> dict:
         """Get a list of properties for a *SV file, to be used in creating a schema."""

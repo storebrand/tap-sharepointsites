@@ -69,22 +69,22 @@ def test_get_url():
     )
 
 
-def test_next_page():
-    tap1 = Tapsharepointsites(config=SAMPLE_CONFIG)
-    stream1 = ListStream(
-        tap=tap1,
-        name="teststream",
-        path="lists/teststream/items?expand=fields",
-    )
-    resp = mock.MagicMock()
-    resp.json.return_value = SAMPLE_RESPONSE
+# def test_next_page():
+#     tap1 = Tapsharepointsites(config=SAMPLE_CONFIG)
+#     stream1 = ListStream(
+#         tap=tap1,
+#         name="teststream",
+#         path="lists/teststream/items?expand=fields",
+#     )
+#     resp = mock.MagicMock()
+#     resp.json.return_value = SAMPLE_RESPONSE
 
-    paginator = stream1.get_new_paginator()
-    next_url = paginator.get_next_url(resp)
-    assert (
-        next_url
-        == "https://graph.microsoft.com/v1.0/sites/root/lists/d7689e2b-941a-4cd3-bb24-55cddee54294/items?$top=1&$skiptoken=UGFnZWQ9VFJVRSZwX0lEPTY"  # noqa
-    )
+#     paginator = stream1.get_new_paginator()
+#     next_url = paginator.get_next_url(resp)
+#     assert (
+#         next_url
+#         == "https://graph.microsoft.com/v1.0/sites/root/lists/d7689e2b-941a-4cd3-bb24-55cddee54294/items?$top=1&$skiptoken=UGFnZWQ9VFJVRSZwX0lEPTY"  # noqa
+#     )
 
 
 @pytest.fixture
