@@ -1,22 +1,19 @@
 import json
-from unittest import mock
-import pytest
-from tap_sharepointsites.list_stream import ListStream
-from tap_sharepointsites.tap import Tapsharepointsites
-from .configuration.test_catalog import sample_catalog
-from .configuration.test_responses import graph_response_list
 import logging
+from unittest import mock
+
+import pytest
 import responses
-from responses import POST, GET
-import re
-import csv
+from responses import GET
+
+from tap_sharepointsites.tap import Tapsharepointsites
 
 LOGGER = logging.getLogger("Some logger")
 
 
 SAMPLE_CONFIG = {
     "api_url": "https://graph.microsoft.com/v1.0/sites/m365x214355.sharepoint.com:/sites/SingerTests:/",  # noqa
-    "pages": True
+    "pages": True,
 }
 
 
@@ -31,49 +28,62 @@ def mock_az_default_identity():
 
 # /beta/sites/{self.site_id}/pages
 
+
 def mock_pages_response():
-    with open('tap_sharepointsites/tests/configuration/pages_response.json', 'r') as file:
+    with open(
+        "tap_sharepointsites/tests/configuration/pages_response.json", "r"
+    ) as file:
         js = json.load(file)
     return js
 
 
 def mock_page1_response():
-    with open('tap_sharepointsites/tests/configuration/page_1_response.json', 'r') as file:
+    with open(
+        "tap_sharepointsites/tests/configuration/page_1_response.json", "r"
+    ) as file:
         js = json.load(file)
     return js
+
 
 def mock_page2_response():
-    with open('tap_sharepointsites/tests/configuration/page_2_response.json', 'r') as file:
+    with open(
+        "tap_sharepointsites/tests/configuration/page_2_response.json", "r"
+    ) as file:
         js = json.load(file)
     return js
+
 
 def mock_site_response():
-    with open('tap_sharepointsites/tests/configuration/site_response.json', 'r') as file:
+    with open(
+        "tap_sharepointsites/tests/configuration/site_response.json", "r"
+    ) as file:
         js = json.load(file)
     return js
 
+
 # https://graph.microsoft.com/beta/sites/m365x214355.sharepoint.com,5a58bb09-1fba-41c1-8125-69da264370a0,9f2ec1da-0be4-4a74-9254-973f0add78fd/pages/229cce86-3768-4b13-8d26-f512aea10551/microsoft.graph.sitepage/webparts
+
 
 @responses.activate
 def test_pages(mock_az_default_identity, capsys):
 
     responses.add(
         GET,
-        "https://graph.microsoft.com/beta/sites/m365x214355.sharepoint.com,5a58bb09-1fba-41c1-8125-69da264370a0,9f2ec1da-0be4-4a74-9254-973f0add78fd/pages",
+        "https://graph.microsoft.com/beta/sites/m365x214355.sharepoint.com,5a58bb09-1fba-41c1-8125-69da264370a0,9f2ec1da-0be4-4a74-9254-973f0add78fd/pages",  # noqa
         json=mock_pages_response(),
         status=200,
     )
 
     responses.add(
         GET,
-        "https://graph.microsoft.com/beta/sites/m365x214355.sharepoint.com,5a58bb09-1fba-41c1-8125-69da264370a0,9f2ec1da-0be4-4a74-9254-973f0add78fd/pages/111-bfsv-bfdv-bfdsb-bvfedabgtf/microsoft.graph.sitepage/webparts",
+        "https://graph.microsoft.com/beta/sites/m365x214355.sharepoint.com,5a58bb09-1fba-41c1-8125-69da264370a0,9f2ec1da-0be4-4a74-9254-973f0add78fd/pages/111-bfsv-bfdv-bfdsb-bvfedabgtf/microsoft.graph.sitepage/webparts",  # noqa
         json=mock_page1_response(),
         status=200,
     )
 
     responses.add(
         GET,
-        "https://graph.microsoft.com/beta/sites/m365x214355.sharepoint.com,5a58bb09-1fba-41c1-8125-69da264370a0,9f2ec1da-0be4-4a74-9254-973f0add78fd/pages/222-bfsv-bfdv-bfdsb-bvfedabgtf/microsoft.graph.sitepage/webparts",
+        "https://graph.microsoft.com/beta/sites/m365x214355.sharepoint.com,5a58bb09-1fba-41c1-8125-69da264370a0,9f2ec1da-0be4-4a74-9254-973f0add78fd/pages/222-bfsv-bfdv-bfdsb-bvfedabgtf/microsoft.graph.sitepage/webparts",  # noqa
         json=mock_page2_response(),
         status=200,
     )
@@ -86,17 +96,15 @@ def test_pages(mock_az_default_identity, capsys):
     )
 
     tap1 = Tapsharepointsites(config=SAMPLE_CONFIG)
-    _ = tap1.streams['pages'].sync(None)
+    _ = tap1.streams["pages"].sync(None)
 
     captured = capsys.readouterr()
     all_stdout = captured.out.strip()
 
+    stdout_parts = [json.loads(row) for row in all_stdout.split("\n")]
 
-    stdout_parts = [json.loads(row) for row in all_stdout.split('\n')]
-
-    records = [row for row in stdout_parts if row.get('type') == 'RECORD']
-    schema = [row for row in stdout_parts if row.get('type') == 'SCHEMA']
-
+    records = [row for row in stdout_parts if row.get("type") == "RECORD"]
+    schema = [row for row in stdout_parts if row.get("type") == "SCHEMA"]
 
     # Test Schema
     assert len(schema) == 1
@@ -105,10 +113,8 @@ def test_pages(mock_az_default_identity, capsys):
     assert "<p>" not in all_stdout
     assert "Early Cryptocurrency Scams" in all_stdout
 
+
 #         base_url = (
 #            f"https://graph.microsoft.com/beta/sites/{self.site_id}/pages/"
 #            f"{id}/microsoft.graph.sitepage/webparts"
 #        )
-
-
-

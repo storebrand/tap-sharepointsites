@@ -2,11 +2,12 @@
 
 import json
 from unittest import mock
+
 import pytest
 
 from tap_sharepointsites.list_stream import ListStream
 from tap_sharepointsites.tap import Tapsharepointsites
-import tap_sharepointsites
+
 from .configuration.test_catalog import sample_catalog
 from .configuration.test_responses import graph_response_list
 
@@ -36,8 +37,6 @@ def test_discovery() -> None:
     # Reset and re-initialize with an input catalog
     tap2 = Tapsharepointsites(config=SAMPLE_CONFIG, catalog=catalog1)
     assert tap2
-
-
 
 
 # @mock.patch('tap_sharepointsites.streams.ListStream._request')

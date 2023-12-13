@@ -190,7 +190,6 @@ class FilesStream(sharepointsitesStream):
             raise Exception(f"Error getting drive: {drive.status_code}: {drive.text}")
         return drive.json()["id"]
 
-
     def get_file_for_row(self, row_data, text=True):
         """Get the file for a row."""
         file = requests.get(
@@ -202,7 +201,6 @@ class FilesStream(sharepointsitesStream):
             return file.text
         else:
             return file.content
-
 
     def get_properties(self, fieldnames) -> dict:
         """Get a list of properties for a *SV file, to be used in creating a schema."""

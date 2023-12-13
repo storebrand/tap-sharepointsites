@@ -147,7 +147,6 @@ class PagesStream(sharepointsitesStream):
 
         return parsed_htmls
 
-
     def request_records(self, context) -> t.Iterable[dict]:
         """Request records from REST endpoint(s), returning response records.
 
