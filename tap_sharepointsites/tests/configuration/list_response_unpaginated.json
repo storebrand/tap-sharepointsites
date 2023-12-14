@@ -1,0 +1,33 @@
+{
+    "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#sites('root')/lists('d7689e2b-941a-4cd3-bb24-55cddee54294')/items",
+    "value": [
+        {
+            "@odata.etag": "c8cf0cd9-826e-4295-8c52-e2c201739dc5,13",
+            "createdDateTime": "2017-09-02T01:44:00Z",
+            "eTag": "c8cf0cd9-826e-4295-8c52-e2c201739dc5,13",
+            "id": "6",
+            "lastModifiedDateTime": "2017-09-02T01:45:12Z",
+            "webUrl": "https://m365x214355.sharepoint.com/Lists/Office%20365%20Demos/6_.000",
+            "createdBy": {
+                "user": {
+                    "email": "provisioninguser1@m365x214355.onmicrosoft.com",
+                    "displayName": "Provisioning User"
+                }
+            },
+            "lastModifiedBy": {
+                "user": {
+                    "email": "provisioninguser1@m365x214355.onmicrosoft.com",
+                    "displayName": "Provisioning User"
+                }
+            },
+            "parentReference": {
+                "id": "f392da1c-c8e2-431b-a1a7-ca7f41ade7f3",
+                "siteId": "m365x214355.sharepoint.com,5a58bb09-1fba-41c1-8125-69da264370a0,9f2ec1da-0be4-4a74-9254-973f0add78fd"
+            },
+            "contentType": {
+                "id": "0x002B9E68D71A94D34CBB2455CDDEE54294",
+                "name": "Office 365 Demos"
+            }
+        }
+    ]
+}

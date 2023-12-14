@@ -1,0 +1,16 @@
+{
+    "@odata.context": "https://graph.microsoft.com/beta/$metadata#sites('blargh.sharepoint.com%2vgDFWV5caf77%2Cd489208d-VDS-VFDS-80VFDSVFCaf-BVSFDFV')/pages('VDSV -VSDF-VSDF-VDSC-VDSVBSFD')/microsoft.graph.sitePage/webParts",
+    "@microsoft.graph.tips": "Come find us in DSM-5",
+    "value": [
+        {
+            "@odata.type": "#microsoft.graph.textWebPart",
+            "id": "222-bfsv-bfdv-bfdsb-bvfedabgtf",
+            "innerHtml": "<p>Furry Communities</p><p> New York vs San Francisco</p><p>&nbsp;</p><p>Grab your socks and go.</p>"
+        },
+        {
+            "@odata.type": "#microsoft.graph.textWebPart",
+            "id": "fedsxevbf-bngtrf-ngrdfb",
+            "innerHtml": "<h1>Furry Fandom in New York vs. San Francisco</h1><p>The furry communities in <strong>New York</strong> and <strong>San Francisco</strong> are as diverse and vibrant as the cities themselves. While both communities share a common love for anthropomorphic art and characters, the way they express their passions and organize their gatherings shows a stark contrast, reflective of their unique city cultures.</p><h2>New York Furries</h2><p>In New York, the furry fandom is often characterized by its <em>energetic</em> and <em>fast-paced</em> lifestyle, mirroring the city's bustling vibe. New York furries frequently organize flash mobs and street performances, where they showcase elaborate costumes that blend traditional furry designs with an urban twist.</p><h2>San Francisco Furries</h2><p>On the other side of the country, San Francisco's furries are known for their <em>artistic</em> and <em>tech-savvy</em> approach. The community often holds events in art galleries and tech hubs, where they emphasize digital artistry in furry culture. San Francisco furries are pioneers in incorporating advanced technologies like VR into their costumes and performances.</p><h3>Conclusion</h3><p>While both cities have a thriving furry culture, the essence of their communities differs. New York's furries bring a dynamic and theatrical element, while San Francisco's group leans more towards artistic innovation and technological integration.</p>"
+        }
+    ]
+}

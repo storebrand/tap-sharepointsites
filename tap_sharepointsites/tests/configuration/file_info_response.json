@@ -1,0 +1,144 @@
+{
+    "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#drives('b%21abc')/root/children",
+    "@microsoft.graph.tips": "Drink heavily",
+    "value": [
+        {
+            "@microsoft.graph.downloadUrl": "https://m365x214355.sharepoint.com/sites/SingerTests/_layouts/15/download.aspx?UniqueId=excel",
+            "createdDateTime": "2023-09-04T10:42:15Z",
+            "eTag": "\"{JJ-HH-GG-FF-DDDD},1\"",
+            "id": "01OXYFDSAVTNEHSDGFS5QJRG2RGER2JX5ORDGFDTD",
+            "lastModifiedDateTime": "2023-11-03T11:56:51Z",
+            "name": "sample_excel.xlsx",
+            "webUrl": "https://m365x214355.sharepoint.com/Shared%20Documents/DemoDocs",
+            "cTag": "\"c:{ABC123},17\"",
+            "size": 17753,
+            "createdBy": {
+                "user": {
+                    "email": "Business.McBusinessson@corp.co",
+                    "id": "abc-def-hij-123-234",
+                    "displayName": "McBusinessson, Business"
+                }
+            },
+            "lastModifiedBy": {
+                "user": {
+                    "email": "Business.McBusinessson@corp.co",
+                    "id": "abc-def-hij-123-234",
+                    "displayName": "McBusinessson, Business"
+                }
+            },
+            "parentReference": {
+                "driveType": "documentLibrary",
+                "driveId": "b!CbtYWrofwUGBJWnaJkNwoNrBLp_kC3RKklSXPwrdeP3yH8_qmH9xT5Y6RODPNfYI",
+                "id": "b!01OXYKUGV6Y2GOVW7725BZO354PWSELRRZ",
+                "name": "test",
+                "path": "/drives/b!CbtYWrofwUGBJWnaJkNwoNrBLp_kC3RKklSXPwrdeP3yH8_qmH9xT5Y6RODPNfYI/root:/test",
+                "siteId": "5a58bb09-1fba-41c1-8125-69da264370a0"
+            },
+            "file": {
+                "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "hashes": {
+                    "quickXorHash": "VcydZss2f1Q6DsLPA5UVmUlmsls="
+                }
+            },
+            "fileSystemInfo": {
+                "createdDateTime": "2023-09-04T10:42:15Z",
+                "lastModifiedDateTime": "2023-11-03T11:56:51Z"
+            },
+            "shared": {
+                "scope": "users"
+            }
+        },
+        {
+            "@microsoft.graph.downloadUrl": "https://m365x214355.sharepoint.com/sites/SingerTests/_layouts/15/download.aspx?UniqueId=csv",
+            "createdDateTime": "2023-11-03T11:50:54Z",
+            "eTag": "\"{AAA-BBB-CCC-FFF-GGGGG},1\"",
+            "id": "010203m365x214355",
+            "lastModifiedDateTime": "2023-11-03T11:50:54Z",
+            "name": "sample.csv",
+            "webUrl": "https://m365x214355.sharepoint.com/sites/SingerTests/Shared%20Documents/tests/demoppl.txt",
+            "cTag": "\"c:{XX-YY-ZZ-11-2222},0\"",
+            "size": 172,
+            "createdBy": {
+                "user": {
+                    "email": "Business.McBusinessson@corp.co",
+                    "id": "abc-def-hij-123-234",
+                    "displayName": "McBusinessson, Business"
+                }
+            },
+            "lastModifiedBy": {
+                "user": {
+                    "email": "Business.McBusinessson@corp.co",
+                    "id": "abc-def-hij-123-234",
+                    "displayName": "McBusinessson, Business"
+                }
+            },
+            "parentReference": {
+                "driveType": "documentLibrary",
+                "driveId": "b!b!CbtYWrofwUGBJWnaJkNwoNrBLp_kC3RKklSXPwrdeP3yH8_qmH9xT5Y6RODPNfYI",
+                "id": "b!b!01OXYKUGV6Y2GOVW7725BZO354PWSELRRZ",
+                "name": "tests",
+                "path": "/drives/b!b!CbtYWrofwUGBJWnaJkNwoNrBLp_kC3RKklSXPwrdeP3yH8_qmH9xT5Y6RODPNfYI/root:/tests",
+                "siteId": "5a58bb09-1fba-41c1-8125-69da264370a0"
+            },
+            "file": {
+                "mimeType": "text/plain",
+                "hashes": {
+                    "quickXorHash": "qwerty="
+                }
+            },
+            "fileSystemInfo": {
+                "createdDateTime": "2023-08-03T11:32:54Z",
+                "lastModifiedDateTime": "2023-08-03T11:32:54Z"
+            },
+            "shared": {
+                "scope": "users"
+            }
+        },
+        {
+            "@microsoft.graph.downloadUrl": "https://m365x214355.sharepoint.com/sites/SingerTests/_layouts/15/download.aspx?UniqueId=ABCDESFD",
+            "createdDateTime": "2023-08-16T08:53:32Z",
+            "eTag": "\"{GGG-FFF-AAA-SSS-DDD},9\"",
+            "id": "01BQ3KM7D4JNK4U2FFIRBIII6P6Z3CM5KH",
+            "lastModifiedDateTime": "2023-09-04T10:32:23Z",
+            "name": "EET Master File.xlsx",
+            "webUrl": "https://m365x214355.sharepoint.com/sites/SingerTests/_layouts/15/Doc.aspx?sourcedoc=%8458373834983484378",
+            "cTag": "\"c:{NN-BB-VV-CC-XXXX},6\"",
+            "size": 379337,
+            "createdBy": {
+                "user": {
+                    "email": "Business.McBusinessson@corp.co",
+                    "id": "abc-def-hij-123-234",
+                    "displayName": "McBusinessson, Business"
+                }
+            },
+            "lastModifiedBy": {
+                "user": {
+                    "email": "Business.McBusinessson@corp.co",
+                    "id": "abc-def-hij-123-234",
+                    "displayName": "McBusinessson, Business"
+                }
+            },
+            "parentReference": {
+                "driveType": "documentLibrary",
+                "driveId": "b!b!CbtYWrofwUGBJWnaJkNwoNrBLp_kC3RKklSXPwrdeP3yH8_qmH9xT5Y6RODPNfYI",
+                "id": "b!b!01OXYKUGV6Y2GOVW7725BZO354PWSELRRZ",
+                "name": "tests",
+                "path": "/drives/b!b!CbtYWrofwUGBJWnaJkNwoNrBLp_kC3RKklSXPwrdeP3yH8_qmH9xT5Y6RODPNfYI/root:/tests",
+                "siteId": "5a58bb09-1fba-41c1-8125-69da264370a0"
+            },
+            "file": {
+                "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "hashes": {
+                    "quickXorHash": "xyz="
+                }
+            },
+            "fileSystemInfo": {
+                "createdDateTime": "2019-08-01T08:32:32Z",
+                "lastModifiedDateTime": "2020-01-16T08:32:32Z"
+            },
+            "shared": {
+                "scope": "users"
+            }
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#sites/$entity",
+    "createdDateTime": "2017-07-29T02:18:22.537Z",
+    "description": "",
+    "id": "m365x214355.sharepoint.com,5a58bb09-1fba-41c1-8125-69da264370a0,9f2ec1da-0be4-4a74-9254-973f0add78fd",
+    "lastModifiedDateTime": "2023-12-13T09:26:49Z",
+    "name": "",
+    "webUrl": "https://m365x214355.sharepoint.com",
+    "displayName": "Office 365 Demos",
+    "root": {},
+    "siteCollection": {
+        "hostname": "m365x214355.sharepoint.com"
+    }
+}

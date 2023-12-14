@@ -162,7 +162,7 @@ class TextStream(sharepointsitesStream):
 
     def get_drive_id(self):
         """Get drives in the sharepoint site."""
-        drive = requests.get(f'{self.config["api_url"]}/drive', headers=self.header)
+        drive = requests.get(f'{self.config["api_url"]}drive', headers=self.header)
 
         if not drive.ok:
             raise Exception(f"Error getting drive: {drive.status_code}: {drive.text}")

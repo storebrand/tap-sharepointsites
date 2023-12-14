@@ -1,0 +1,37 @@
+{
+    "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#drives/$entity",
+    "@microsoft.graph.tips": "Buy more whisky",
+    "createdDateTime": "2023-05-22T12:23:16Z",
+    "description": "",
+    "id": "b!ABCDEFGH1234567890",
+    "lastModifiedDateTime": "2023-11-08T09:06:51Z",
+    "name": "Documents",
+    "webUrl": "https://m365x214355.sharepoint.com/sites/SingerTests/Shared%20Documents",
+    "driveType": "documentLibrary",
+    "createdBy": {
+        "user": {
+            "displayName": "System Account"
+        }
+    },
+    "lastModifiedBy": {
+        "user": {
+            "email": "Business.McBusinessson@corp.co",
+            "id": "abc-def-hij-123-234",
+            "displayName": "McBusinessson, Business"
+        }
+    },
+    "owner": {
+        "group": {
+            "email": "SingerTests@m365x214355.onmicrosoft.com",
+            "id": "AAA-VV-FF-GGG-HHJJGH",
+            "displayName": "SingerTests Owners"
+        }
+    },
+    "quota": {
+        "deleted": 0,
+        "remaining": 123,
+        "state": "normal",
+        "total": 2345,
+        "used": 2300
+    }
+}
