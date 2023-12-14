@@ -26,9 +26,6 @@ def mock_az_default_identity():
         yield mock_get_token
 
 
-# /beta/sites/{self.site_id}/pages
-
-
 def mock_pages_response():
     with open(
         "tap_sharepointsites/tests/configuration/pages_response.json", "r"
@@ -59,9 +56,6 @@ def mock_site_response():
     ) as file:
         js = json.load(file)
     return js
-
-
-# https://graph.microsoft.com/beta/sites/m365x214355.sharepoint.com,5a58bb09-1fba-41c1-8125-69da264370a0,9f2ec1da-0be4-4a74-9254-973f0add78fd/pages/229cce86-3768-4b13-8d26-f512aea10551/microsoft.graph.sitepage/webparts
 
 
 @responses.activate
@@ -112,9 +106,3 @@ def test_pages(mock_az_default_identity, capsys):
     assert "Furry Communities" in all_stdout
     assert "<p>" not in all_stdout
     assert "Early Cryptocurrency Scams" in all_stdout
-
-
-#         base_url = (
-#            f"https://graph.microsoft.com/beta/sites/{self.site_id}/pages/"
-#            f"{id}/microsoft.graph.sitepage/webparts"
-#        )

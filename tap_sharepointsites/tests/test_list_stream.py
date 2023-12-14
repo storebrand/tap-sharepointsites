@@ -11,7 +11,6 @@ from tap_sharepointsites.list_stream import ListStream
 from tap_sharepointsites.tap import Tapsharepointsites
 
 from .configuration.test_catalog import sample_catalog
-from .configuration.test_responses import graph_response_list
 
 LOGGER = logging.getLogger("Some logger")
 
@@ -21,7 +20,11 @@ SAMPLE_CONFIG = {
 }
 
 SAMPLE_CATALOG = json.loads(sample_catalog)
-SAMPLE_RESPONSE = json.loads(graph_response_list)
+SAMPLE_RESPONSE_TXT = open(
+    "tap_sharepointsites/tests/configuration/list_response_unpaginated.json"
+).read()
+
+SAMPLE_RESPONSE = json.loads(SAMPLE_RESPONSE_TXT)
 
 
 @pytest.fixture
@@ -55,7 +58,7 @@ def test_stuff(mock_az_default_identity, capsys):
         re.compile(
             r"https://graph.microsoft.com/v1.0/sites/example.sharepoint.com:/sites/demo:/lists/list1/items"
         ),
-        callback=lambda _: (200, {}, graph_response_list),
+        callback=lambda _: (200, {}, SAMPLE_RESPONSE_TXT),
     )
 
     _ = tap1.streams["list1"].sync(None)
