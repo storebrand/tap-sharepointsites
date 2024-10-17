@@ -1,3 +1,6 @@
+# ⚠️ This repository is no longer being maintained
+Storebrand have moved on from Meltano, and we're therefore no longer maintaining this repository. 
+
 # tap-sharepointsites
 
 `tap-sharepointsites` is a Singer tap for Microsoft Graph Sharepoint lists.
